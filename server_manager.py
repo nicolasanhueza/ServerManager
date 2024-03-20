@@ -1,6 +1,5 @@
 import subprocess
-
-import subprocess
+from datetime import datetime
 
 def git_init():
     subprocess.run(['git', 'init'])
@@ -10,7 +9,9 @@ def git_pull():
 
 def git_add_commit_push():
     subprocess.run(['git', 'add', '.'])
-    commit_message = input("Ingrese el mensaje de commit: ")
+    now = datetime.now()
+    formatted_date = now.strftime("%Y-%m-%d %H:%M:%S")
+    commit_message = f"Watakacraft [{formatted_date}]"
     subprocess.run(['git', 'commit', '-m', commit_message])
     subprocess.run(['git', 'push'])
 
