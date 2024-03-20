@@ -29,6 +29,9 @@ def git_init(directory):
     # Initialize the Git repository
     subprocess.run(['git', 'init'])
 
+def git_clone(repository):
+    subprocess.run(['git', 'clone', repository])
+
 def git_pull():
     # To update existing changes in the repository that are not local
     subprocess.run(['git', 'pull'])
@@ -55,17 +58,29 @@ def git_add_commit_push():
 
 def main():
 
-    option = input("¿Desea Agregar un nuevo repositorio (A) o Reinicializar repositorio (R)? ")
-    
-    if option == 'A':
-        # Obtener la ruta del directorio del usuario
+    option = input("""
+                    Selecciona una opción:\n
+                    1. Agregar nuevo repositorio.
+                    2. Clonar repositorio.
+                    3. Reinicializar repositorio.\n
+                    \tIngresar opción: """)
+
+    if option == '1':
+        # Get the user's directory path
         directory = get_save_directory()
         git_init(directory)
         repository = git_repository()
         git_add_commit_push_first_time(repository)
 
-    elif option == 'R':
-        # Obtener la ruta del directorio del usuario
+    elif option == '2':
+        # The address where you want to clone the repository is defined
+        directory = input("Ingresa la ruta del directorio de guardado: ")
+        git_init(directory)
+        repository = git_repository()
+        git_clone(repository)
+
+    elif option == '3':
+        # Get the user's directory path
         directory = get_save_directory()
         git_init(directory)
         
