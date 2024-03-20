@@ -28,9 +28,11 @@ def git_add_commit_push():
     subprocess.run(['git', 'commit', '-m', commit_message])
     # Improvable?
     subprocess.run(['git', 'push', '--set-upstream', 'https://github.com/nicolasanhueza/MundoPrueba.git', 'master'])
-    
+
 def main():
-    git_init()
+    # Obtener la ruta del directorio del usuario
+    directory = get_save_directory()
+    git_init(directory)
     option = input("¿Desea Actualizar (A) o Guardar (G)? ").upper()
     if option == 'A':
         git_pull()
